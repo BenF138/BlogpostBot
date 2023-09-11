@@ -1,3 +1,12 @@
+#Ignore env containing secrets
+.env
+#Ignore Virtual Env
+env/
+#Ignore generated outputs
+outputs/
+#Ignore pycache
+**/__pycache__/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
