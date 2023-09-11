@@ -153,7 +153,7 @@ def main():
     total_tokens = 0
 
     # Researcher Role
-    research_report = conduct_research_on_topic(target_keyword)
+    research_report = conduct_research_on_topic(initial_directive, target_keyword)
     
     print("\n=== Research Report ===\n")
     print(research_report)
