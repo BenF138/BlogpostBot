@@ -72,14 +72,15 @@ def generate_pdf(keyword, content):
     pdf.multi_cell(0, 10, content)
     
     current_timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-    filename = f"{keyword}_{current_timestamp}.pdf"
+    folder_path = "articles/"  # specify your desired folder path here
+    filename = f"{folder_path}{keyword}_{current_timestamp}.pdf"
     pdf.output(filename)
     return filename
 
-def conduct_research_on_topic(topic, keyword):
+async def conduct_research_on_topic(topic, keyword):
     agent = ResearchAgent(question=topic, agent="Your chosen agent", agent_role_prompt=None, websocket=None)
-    research_summary = agent.conduct_research()
-    report, _ = agent.write_report(report_type="summary")
+    research_summary = await agent.conduct_research()
+    report, _ = await agent.write_report(report_type="summary")
     return report
 
 #def main():
@@ -158,9 +159,7 @@ def main():
     print("\n=== Research Report ===\n")
     print(research_report)
     print("\n=======================\n")
-    
-    total_tokens += tokens
-
+     
     # Content Writer Role
     draft, tokens = safe_api_call("gpt-4", 
                                   "You are a professional content writer. Using the research information provided, write a blog post ensuring it's between 5000 and 8000 words long.",
