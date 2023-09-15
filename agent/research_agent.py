@@ -159,14 +159,14 @@ class ResearchAgent:
         await self.websocket.send_json({"type": "logs", "output": f"I will research based on the following concepts: {result}\n"})
         return json.loads(result)
 
-    async def write_report(self, report_type, websocket):
+    async def write_report(self, report_type):
         """ Writes the report for the given question.
         Args: None
         Returns: str: The report for the given question
         """
         report_type_func = prompts.get_report_by_type(report_type)
-        await websocket.send_json(
-            {"type": "logs", "output": f"✍️ Writing {report_type} for research task: {self.question}..."})
+        #await websocket.send_json(
+           # {"type": "logs", "output": f"✍️ Writing {report_type} for research task: {self.question}..."})
         answer = await self.call_agent(report_type_func(self.question, self.research_summary), stream=True,
                                        websocket=websocket)
 

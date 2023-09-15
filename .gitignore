@@ -1,3 +1,5 @@
+/blogposts
+api.key.txt
 #Ignore env containing secrets
 .env
 #Ignore Virtual Env
